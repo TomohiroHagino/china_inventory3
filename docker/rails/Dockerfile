@@ -1,7 +1,4 @@
 FROM ruby:2.7
-# このDockerfileのメタデータを記述
-# MAINTAINERはdeprecateになった
-LABEL maintainer="Tomohiro Hagino <marspeoplehg@gmail.com>"|
 
 # fishのフォントのインストール
 # RUN git clone https://github.com/powerline/fonts.git && \
@@ -67,8 +64,5 @@ ENV TZ="Asia/Tokyo"
 # RUN chsh -s /usr/bin/fish
 # ENV SHELL /usr/bin/fish
 
-# Start the main process.
-# CMD ["rails", "server", "-b", "0.0.0.0"]
-
-# CMD ["entrypoint.sh"]
-# EXPOSE 3000
+CMD ["entrypoint.sh"]
+EXPOSE 3000

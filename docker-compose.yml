@@ -16,7 +16,7 @@ services:
       - db
     stdin_open: true
     tty: true
-    command: sh ./docker/rails/entrypoint.sh
+    command: ["bash"]
   db:
     build:
       context: ./docker/postgresql/
