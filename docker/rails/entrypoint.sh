@@ -8,10 +8,12 @@ yarn install
 # Remove a potentially pre-existing server.pid for Rails.
 rm -f /myapp/tmp/pids/server.pid
 
+# この２ディレクトリが消えるとpumaとnginxが動かないので念のため
 mkdir -p tmp/pids
 mkdir -p tmp/sockets
 
+# 自動でrailsサーバー立ち上げたいときはコメントアウトを外す
 # bundle exec puma -C config/puma.rb
 
-# Then exec the container's main process (what's set as CMD in the Dockerfile).
+# 以下のコマンドでメインプロセスを作動させる。 (DockerfileにセットしたCMD)
 exec "$@"

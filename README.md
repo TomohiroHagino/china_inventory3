@@ -1,6 +1,6 @@
 # サービスに関して
 
-- 名称：China inbenory3
+- 名称：プロジェクト名
 
 
 # 自分用のメモ。
@@ -112,7 +112,9 @@ https://leanpub.com/everydayrailsrspec-jp/read
 ```
 https://blog.rista.jp/entry/2017/12/27/135622
 ```
-# etc...
+# デバッグ
 ```
-何かあれば適宜追加します。
+pryいれてあります
+
+
 ```

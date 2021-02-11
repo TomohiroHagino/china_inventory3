@@ -20,9 +20,6 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 COPY . /myapp
 
-COPY launch.sh /usr/bin/
-RUN chmod +x /usr/bin/launch.sh
-
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
