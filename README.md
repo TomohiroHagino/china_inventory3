@@ -47,7 +47,7 @@ $ docker-compose build
 
 それぞれのコンテナのターミナルに直接アクセス
 コンテナから抜ける時はCommand+P,Q
-$ docker-compose exec ●●● /bin/bash
+$ docker-compose exec ●●● ash
 
 サーバーの立ち上げ
 $ bundle exec puma -C config/puma.rb

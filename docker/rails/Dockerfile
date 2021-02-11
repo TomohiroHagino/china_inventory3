@@ -1,4 +1,4 @@
-FROM ruby:2.7
+FROM ruby:2.7.1-alpine3.12
 
 # fishのフォントのインストール
 # RUN git clone https://github.com/powerline/fonts.git && \
@@ -8,12 +8,26 @@ FROM ruby:2.7
 # Warning: apt-key output should not be parsed (stdout is not a terminal)とか出る対策
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
-# webpackerに必要なyarnのダウンロード
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+# alpine環境に必要なパッケージをインストール
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache \
+        gcc \
+        g++ \
+        libc-dev \
+        libxml2-dev \
+        linux-headers \
+        make \
+        postgresql-client \
+        nodejs \
+        nodejs-npm \
+        tzdata \
+        build-base \
+        curl-dev \
+        graphviz \
+        vim \
+        yarn
 
-# 必要なパッケージのインストール,myappにファイルコピー
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn vim
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
