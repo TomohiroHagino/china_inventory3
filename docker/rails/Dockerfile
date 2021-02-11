@@ -21,6 +21,8 @@ RUN apk update && \
         postgresql \
         postgresql-dev\
         postgresql-client \
+#        mysql-client \
+#        mysql-dev \
         nodejs \
         nodejs-npm \
         tzdata \
