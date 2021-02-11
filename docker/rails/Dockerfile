@@ -18,6 +18,8 @@ RUN apk update && \
         libxml2-dev \
         linux-headers \
         make \
+        postgresql \
+        postgresql-dev\
         postgresql-client \
         nodejs \
         nodejs-npm \
