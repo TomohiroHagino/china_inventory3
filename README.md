@@ -2,6 +2,35 @@
 
 - 名称：China inbenory3
 
+
+# 自分用のメモ。
+
+```
+nginxとpumaの連携をするために
+config/puma.rbの末尾に以下を足す必要があった。
+
+bind "unix://#{app_root}/tmp/sockets/puma.sock"
+
+そして、
+nginxコンテナとの連携のために
+dockerボリュームで
+
+tmp_volumeと、public_volumeというところにrailsのtmpディレクトリを同期。
+その影響で、tmp/pids/ とtmp/sockets/ が
+環境を変えた時に消えてしまう問題があった。
+
+そしてその２つが消えてしまうと、pumaが動かなくなり、nginxとの同期もうまくいかなくなる。
+なので、rails用のentrypoint.shに
+
+mkdir -p tmp/pids
+mkdir -p tmp/sockets
+
+を追加した。
+
+これでバインドできることを確認した。
+```
+
+
 # 環境構築
 
 ```
