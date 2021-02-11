@@ -4,9 +4,9 @@ FROM ruby:2.7
 LABEL maintainer="Tomohiro Hagino <marspeoplehg@gmail.com>"|
 
 # fishのフォントのインストール
-RUN git clone https://github.com/powerline/fonts.git && \
-    fonts/install.sh && \
-    chmod -R 777 ~/.local/share/fonts
+# RUN git clone https://github.com/powerline/fonts.git && \
+#    fonts/install.sh && \
+#    chmod -R 777 ~/.local/share/fonts
 
 # Warning: apt-key output should not be parsed (stdout is not a terminal)とか出る対策
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
@@ -25,6 +25,9 @@ COPY . /myapp
 
 COPY launch.sh /usr/bin/
 RUN chmod +x /usr/bin/launch.sh
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
 
 # Bundlerの設定
 # 失敗したネットワーク要求を再試行する回数。デフォルトは3
@@ -52,17 +55,20 @@ RUN mkdir -p tmp/public
 ENV TZ="Asia/Tokyo"
 
 # fishのインストール,テーマbobthefish
-RUN apt-get update --quiet && \
-    apt-get install --quiet --yes software-properties-common && \
-    add-apt-repository --yes ppa:fish-shell/release-3 && \
-    apt-get install --quiet --yes fish && \
-    curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher && \
-    fish -c "fisher add oh-my-fish/theme-bobthefish" && \
-    apt-get install -y fonts-powerline
+# RUN apt-get update --quiet && \
+#    apt-get install --quiet --yes software-properties-common && \
+#    add-apt-repository --yes ppa:fish-shell/release-3 && \
+#    apt-get install --quiet --yes fish && \
+#    curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher && \
+#    fish -c "fisher add oh-my-fish/theme-bobthefish" && \
+#    apt-get install -y fonts-powerline
 
-SHELL ["fish", "--command"]
-RUN chsh -s /usr/bin/fish
-ENV SHELL /usr/bin/fish
+# SHELL ["fish", "--command"]
+# RUN chsh -s /usr/bin/fish
+# ENV SHELL /usr/bin/fish
 
 # Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# CMD ["rails", "server", "-b", "0.0.0.0"]
+
+# CMD ["entrypoint.sh"]
+# EXPOSE 3000

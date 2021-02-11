@@ -4,4 +4,4 @@
 bundle install
 yarn install
 # rails new . --force --no-deps --database=postgresql
-bundle exec puma -C config/puma.rb
+# bundle exec puma -C config/puma.rb

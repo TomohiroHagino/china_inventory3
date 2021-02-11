@@ -3,12 +3,10 @@ services:
   app:
     build:
       context: ./docker/rails/
-    command: sh ./docker/rails/launch.sh
     volumes:
       - .:/myapp
       - public_volume:/myapp/public
       - tmp_volume:/myapp/tmp
-      - log_volume:/myapp/log
       - vendor_bundle:/usr/local/bundle
     ports:
       - "3000:3000"
@@ -16,6 +14,9 @@ services:
       TZ: Asia/Tokyo
     depends_on:
       - db
+    stdin_open: true
+    tty: true
+    command: sh ./docker/rails/entrypoint.sh
   db:
     build:
       context: ./docker/postgresql/
@@ -40,7 +41,7 @@ services:
   minio:
     image: minio/minio:latest
     ports:
-      - 9000:9000
+      - 9001:9001
     volumes:
       - minio:/data
     command: server /data
@@ -51,7 +52,6 @@ volumes:
   vendor_bundle:
   public_volume:
   tmp_volume:
-  log_volume:
   pg_data:
   minio:
     driver: local
