@@ -28,19 +28,20 @@ services:
       TZ: Asia/Tokyo
       POSTGRES_PASSWORD: password
 # db:
-#    image: mysql
+#    build:
+#      context: ./docker/mysql/
 #    command: >
 #      mysqld
 #      --default-authentication-plugin=mysql_native_password
 #      --character-set-server=utf8mb4
 #      --collation-server=utf8mb4_unicode_ci
+#    volumes:
+#      - ./db/mysql/volumes:/var/lib/mysql
 #    environment:
 #      MYSQL_USER: root
 #      MYSQL_ROOT_PASSWORD: password
 #    ports:
 #      - '3306:3306'
-#    volumes:
-#      - ./db/mysql/volumes:/var/lib/mysql
   nginx:
     build:
       context: ./docker/nginx/
