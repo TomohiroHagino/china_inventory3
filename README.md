@@ -49,6 +49,10 @@ $ docker-compose build
 コンテナから抜ける時はCommand+P,Q
 $ docker-compose exec ●●● /bin/bash
 
+サーバーの立ち上げ
+$ bundle exec puma -C config/puma.rb
+(rails s -b 0.0.0.0で立ち上げると、nginxにbindされない。)
+
 DB関連 コンテナに直接アクセスして以下のコマンドをやればOK(bundle execつけなくてもいい)
 $ bundle exec rails db:reset
 $ bundle exec rails db:create
